@@ -69,6 +69,11 @@ public class NameController {
     @RequestMapping("/api/name")
     public ResponseEntity<String> getName() throws IOException {
         handler.sendMessage("GET /api/name at " + LocalTime.now());
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         if (doFail.get()) {
             return new ResponseEntity<>("Name service down", HttpStatus.INTERNAL_SERVER_ERROR);
